@@ -103,13 +103,21 @@ function sortNum() {
 // tìm số nguyên tố đầu tiên
 function findNguyenTo() {
   let hienNum = document.getElementById("txtArray8");
-  for (let n=0, i = 0; i < numArray.length; i++) {
-    if (numArray[i]%2===0) {
-      n = numArray[i];
+  let firstPrime = "";
+  for (let i = 0; i < numArray.length; i++) {
+    if (numArray[i] == 2) {
+      firstPrime = numArray[i];
+      break;
+    } else if (numArray[i] % 2 != 0 && numArray[i] > 1) {
+      firstPrime = numArray[i];
       break;
     }
   }
-  hienNum.innerHTML = "Số nguyên tố đầu tiên: " + n;
+  if (firstPrime != "") {
+    hienNum.innerHTML = "Số nguyên tố đầu tiên " + firstPrime;
+  } else {
+    hienNum.innerHTML = "Không tìm thấy số nguyên tố trong mảng";
+  }
 }
 
 // đếm số nguyên
@@ -118,6 +126,24 @@ function checkNumNguyen() {
   for (let n = 0, i = 0; i < numArrayN.length; i++) {
     Number.isInteger(numArrayN[i]) && n++;
     hienNum.innerHTML = "Tổng số dương: " + n;
+  }
+}
+
+// so sánh số âm dương
+function demNum() {
+  let hienNum = document.getElementById("txtArray10");
+  let n = 0,
+    r = 0;
+  for (let i = 0; i < numArray.length; i++) {
+    numArray[i] > 0 ? n++ : numArray[i] < 0 && r++;
+  }
+
+  if (n > r) {
+    hienNum.innerHTML = "Số dương > Số âm";
+  } else if (n < r) {
+    hienNum.innerHTML = "Số âm > Số dương";
+  }else{
+    hienNum.innerHTML = "Số âm = Số dương";
   }
 }
 
